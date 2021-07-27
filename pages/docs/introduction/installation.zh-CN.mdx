@@ -1,0 +1,94 @@
+---
+title: Installation
+---
+
+import Callout from 'nextra-theme-docs/callout'
+
+
+
+
+## 要求
+
+### Windows 和 MacOS
+为了在本地计算机上安装区块链，您需要在本地计算机上安装 docker。
+安装 docker 最简单的方法是使用[Docker Desktop](https://www.docker.com/products/docker-desktop)。
+安装 docker 后，您可以使用命令 `docker run hello-world` 检查您的安装。
+
+
+### Ubuntu
+
+为了在你的 Ubuntu 系统上安装 docker，你可以使用命令 `sudo apt install docker.io`，
+之后在 Ubuntu 18.04 和 Ubuntu 20.04 上命令 `sudo apt install docker-compose`。
+
+### 其他 linux 操作系统
+
+请遵循官方[docker安装说明](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository)。
+
+
+## 安装
+
+安装 docker 后，您可以从以下位置下载区块链的最新版本
+我们的 [Github](https://github.com/sirily11/eth-localnet.git)。
+
+**首先你需要克隆存储库**
+
+`
+git clone https://github.com/sirily11/eth-localnet.git
+`
+
+**然后你从 docker hub 拉取预构建的镜像**
+
+`
+docker pull sirily11/etd-privatenet
+`
+
+
+**可以运行容器了**
+
+<Callout>请检查 envfile 部分以设置所需的 env 变量</Callout>
+
+`
+docker-compose up -d worker
+`
+
+
+
+此命令将在后台启动 etd worker。如果你想关注由容器生成的日志，可以用
+
+`docker-compose logs -f worker`。
+
+
+## 安装其他服务
+
+我们提供了一个 docker-compose 文件，可用于启动其他服务。
+可用的服务列表是：
+
+- admin：一个简单的网络界面来管理区块链
+- etdstats_node：收集区块链统计数据并将其发送到我们的区块链[浏览器](https://stats.etd.zone)的节点
+
+您可以通过运行命令 `docker-compose up -d service_name` 来启动服务。
+
+例如，`docker-compose up -d admin` 将在您的本地计算机上启动管理服务。
+
+## 自动更新
+
+要使用我们的自动更新脚本，您需要先安装 pm2。为了安装 pm2，您需要安装最新的 nodejs。
+安装 nodejs 后，您可以运行命令 `npm install pm2 -g`。在我们的项目目录中，运行命令
+`pm2 启动 app.json`。这将在后台运行我们的自动更新脚本。要在启动时启动自动更新脚本，
+您可以使用命令 `pm2 startup` 来实现。
+
+## 环境文件
+
+为了正确启动我们的区块链，您需要在本地文件夹中有一个 `.env` 文件，其中包含以下值：
+```
+etd_websocket=wss://{您的 etdstats 服务器的 websocket url |可选的}
+etd_password={您的etdstats 服务器的websocket 密码|可选的}
+etd_node_name={您的etdstats 服务器的节点名称和管理员的用户名|必需的}
+etd_node_id={您的etdstats 服务器的节点ID 和管理员密码|必需的}
+etd_coinbase={您的钱包地址}
+etd_max_peers={最大peers number|可选的}
+etd_secure_rpc=真
+```
+
+如果您更改 `etd_node_id` 或 `etd_node_name`，
+您需要重新构建管理容器 `docker-compose build admin` 以应用更改。

@@ -1,14 +1,14 @@
 {
-  "name": "swr-site",
+  "name": "etd-site",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "dev": "next",
     "start": "next start",
-    "build": "STORK_PATH=$(pwd)/bin/stork.bin next build"
+    "build": "next build && next export"
   },
-  "author": "Shu Ding",
+  "author": "sirily11",
   "license": "Apache-2.0",
   "dependencies": {
     "@material-ui/core": "^4.12.2",

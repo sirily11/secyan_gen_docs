@@ -56,5 +56,6 @@ export default {
   i18n: [
     { locale: "en-US", text: "English" },
     { locale: "zh-CN", text: "简体中文" },
+    { locale: "zh-HK", text: "繁体中文" },
   ],
 };

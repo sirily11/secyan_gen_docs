@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
-import SpeedIcon from '@material-ui/icons/Speed';
-import StorageIcon from '@material-ui/icons/Storage';
-import PublicIcon from '@material-ui/icons/Public';
+import SpeedIcon from "@material-ui/icons/Speed";
+import StorageIcon from "@material-ui/icons/Storage";
+import PublicIcon from "@material-ui/icons/Public";
 import styles from "./features.module.css";
 
 const Feature = ({ text, icon }) => (
@@ -12,8 +12,7 @@ const Feature = ({ text, icon }) => (
 );
 
 const TITLE_WITH_TRANSLATIONS = {
-  "en-US": "The next generation of the BlockChain",
-  "zh-CN": "下一代区块链技术"
+  "zh-CN": "SECYAN Codegen，你的每一次数据查询更安全",
 };
 
 export default () => {
@@ -26,12 +25,6 @@ export default () => {
       <div className={styles.features}>
         <div>
           <Feature text="Fast" icon={<SpeedIcon />} />
-        </div>
-        <div>
-          <Feature text="File Storage" icon={<StorageIcon />} />
-        </div>
-        <div>
-          <Feature text="Distributed" icon={<PublicIcon />} />
         </div>
       </div>
     </div>

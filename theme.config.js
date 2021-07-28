@@ -1,23 +1,21 @@
 import { useRouter } from "next/router";
 
 const TITLE_WITH_TRANSLATIONS = {
-  "en-US": "Blockchain Documentation",
-  "zh-CN": "区块链文档",
+  "en-US": "SECYAN Codegen",
+  "zh-CN": "SECYAN Codegen",
 };
 
 export default {
-  titleSuffix: " – ETD",
+  titleSuffix: " – SECYAN",
   search: false,
   unstable_stork: true,
-  repository: "https://github.com/crypyto-panel/etd-website",
-  docsRepository: "https://github.com/crypyto-panel/etd-website",
   logo: () => {
     const { locale } = useRouter();
     return (
       <>
         <img src="/favicon.ico" width="40" />
         <span className="mx-2 font-extrabold hidden md:inline select-none">
-          ETD
+          SECYAN
         </span>
         <span className="text-gray-600 font-normal hidden lg:!inline whitespace-no-wrap">
           {TITLE_WITH_TRANSLATIONS[locale]}
@@ -33,16 +31,15 @@ export default {
       <meta name="theme-color" content="#ffffff" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <meta httpEquiv="Content-Language" content="en" />
-      <meta name="description" content="ETD Blockchain Documentation" />
-      <meta name="og:description" content="ETD Blockchain Documentation" />
+      <meta name="description" content="SECYAN CodeGen Documentation" />
+      <meta name="og:description" content="SECYAN CodeGen Documentation" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@vercel" />
       <meta name="twitter:image" content="favicon.ico" />
-      <meta name="og:title" content="ETD: Next Gen Blockchain" />
-      <meta name="og:image" content="favicon.ico" />
+      <meta name="og:title" content="SECYAN: Next Gen CodeGen" />
       <meta
         name="apple-mobile-web-app-title"
-        content="ETD Blockchain Documentation"
+        content="SECYAN CodeGen Documentation"
       />
       <link
         rel="stylesheet"
@@ -53,10 +50,5 @@ export default {
     </>
   ),
   footer: false,
-  i18n: [
-    { locale: "en-US", text: "English" },
-    { locale: "zh-CN", text: "简体中文" },
-    { locale: "zh-HK", text: "繁体中文" },
-    { locale: "jp", text: "日本" },
-  ],
+  i18n: [{ locale: "zh-CN", text: "简体中文" }],
 };

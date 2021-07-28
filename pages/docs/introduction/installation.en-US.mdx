@@ -4,61 +4,49 @@ title: Installation
 
 import Callout from 'nextra-theme-docs/callout'
 
-
 ## Requirements
 
 ### Windows and MacOS
+
 In order to install the block chain on your local computer, you need to install docker on your local machine.
 The simplest way to install docker is to use the [Docker Desktop](https://www.docker.com/products/docker-desktop).
 After installing docker, you can check your installation by using the command `docker run hello-world`.
 
-
 ### Ubuntu
 
-In order to install docker on your Ubuntu System, you may use the command `sudo apt install docker.io`, 
+In order to install docker on your Ubuntu System, you may use the command `sudo apt install docker.io`,
 and command `sudo apt install docker-compose` on Ubuntu 18.04 and Ubuntu 20.04.
 
 ### Other linux operatings systems
 
 Please follow the oficial [docker installation instructions](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository).
 
-
 ## Installation
 
-After installing docker, you can download the latest release of the blockchain from 
-our [Github](https://github.com/sirily11/eth-localnet.git).
+After installing docker, you can download the latest release of the blockchain from
+our [Github](https://github.com/crypyto-panel/etd-blockchain.git).
 
 **First you need to clone the repository**
 
-`
-git clone https://github.com/sirily11/eth-localnet.git
-`
+`git clone https://github.com/crypyto-panel/etd-blockchain.git`
 
 **Then you pull the pre-built image from docker hub**
 
-`
-docker pull sirily11/etd-privatenet
-`
-
+`docker pull etd/etd-blockchain`
 
 **Finally you can run the container**
 
 <Callout>Please check the envfile section to setup the required env variables</Callout>
 
-`
-docker-compose up -d worker
-`
+`docker-compose up -d worker`
 
-
-
-This command will start the etd worker in background. If you want to follow the logs 
-produced by the container, you can run the command 
+This command will start the etd worker in background. If you want to follow the logs
+produced by the container, you can run the command
 `docker-compose logs -f worker`.
-
 
 ## Install other services
 
-We have provided a docker-compose file that can be used to start the other services. 
+We have provided a docker-compose file that can be used to start the other services.
 The list of the services avaiable is:
 
 - admin: a simple web interface to manage the blockchain
@@ -78,6 +66,7 @@ you can use command `pm2 startup` to achieve that.
 ## Env Files
 
 In order to boot our block chain correctly, you need to have an `.env` file in your local folder with following values:
+
 ```
 etd_websocket=wss://{your etdstats server's websocket url | Optional}
 etd_password={Your etdstats server's websocket password | Optional}
@@ -88,5 +77,5 @@ etd_max_peers={Maximum peers number | Optional}
 etd_secure_rpc=true
 ```
 
-If you change `etd_node_id` or `etd_node_name`, 
+If you change `etd_node_id` or `etd_node_name`,
 you need to re-build your admin container `docker-compose build admin` to apply changes.

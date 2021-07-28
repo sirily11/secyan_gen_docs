@@ -4,16 +4,13 @@ title: Installation
 
 import Callout from 'nextra-theme-docs/callout'
 
-
-
-
 ## 要求
 
 ### Windows 和 MacOS
+
 為了在本地計算機上安裝區塊鏈，您需要在本地計算機上安裝 docker。
 安裝 docker 最簡單的方法是使用[Docker Desktop](https://www.docker.com/products/docker-desktop)。
 安裝 docker 後，您可以使用命令 `docker run hello-world` 檢查您的安裝。
-
 
 ### Ubuntu
 
@@ -22,41 +19,30 @@ import Callout from 'nextra-theme-docs/callout'
 
 ### 其他 linux 操作系統
 
-請遵循官方[docker安裝說明](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository)。
-
+請遵循官方[docker 安裝說明](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository)。
 
 ## 安裝
 
 安裝 docker 後，您可以從以下位置下載區塊鏈的最新版本
-我們的 [Github](https://github.com/sirily11/eth-localnet.git)。
+我們的 [Github](https://github.com/crypyto-panel/etd-blockchain.git)。
 
 **首先你需要克隆存儲庫**
 
-`
-git clone https://github.com/sirily11/eth-localnet.git
-`
+`git clone https://github.com/crypyto-panel/etd-blockchain.git`
 
 **然後你從 docker hub 拉取預構建的鏡像**
 
-`
-docker pull sirily11/etd-privatenet
-`
-
+`docker pull etd/etd-blockchain`
 
 **可以運行容器了**
 
 <Callout>請檢查 envfile 部分以設置所需的 env 變量</Callout>
 
-`
-docker-compose up -d worker
-`
-
-
+`docker-compose up -d worker`
 
 此命令將在後台啟動 etd worker。如果你想關注由容器生成的日誌，可以用
 
 `docker-compose logs -f worker`。
-
 
 ## 安裝其他服務
 
@@ -80,6 +66,7 @@ docker-compose up -d worker
 ## 環境文件
 
 為了正確啟動我們的區塊鏈，您需要在本地文件夾中有一個 `.env` 文件，其中包含以下值：
+
 ```
 etd_websocket=wss://{您的 etdstats 服務器的 websocket url |可選的}
 etd_password={您的etdstats 服務器的websocket 密碼|可選的}

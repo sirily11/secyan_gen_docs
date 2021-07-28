@@ -1,0 +1,94 @@
+---
+title: Installation
+---
+
+import Callout from 'nextra-theme-docs/callout'
+
+
+
+
+## 要求
+
+### Windows 和 MacOS
+為了在本地計算機上安裝區塊鏈，您需要在本地計算機上安裝 docker。
+安裝 docker 最簡單的方法是使用[Docker Desktop](https://www.docker.com/products/docker-desktop)。
+安裝 docker 後，您可以使用命令 `docker run hello-world` 檢查您的安裝。
+
+
+### Ubuntu
+
+為了在你的 Ubuntu 系統上安裝 docker，你可以使用命令 `sudo apt install docker.io`，
+之後在 Ubuntu 18.04 和 Ubuntu 20.04 上命令 `sudo apt install docker-compose`。
+
+### 其他 linux 操作系統
+
+請遵循官方[docker安裝說明](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository)。
+
+
+## 安裝
+
+安裝 docker 後，您可以從以下位置下載區塊鏈的最新版本
+我們的 [Github](https://github.com/sirily11/eth-localnet.git)。
+
+**首先你需要克隆存儲庫**
+
+`
+git clone https://github.com/sirily11/eth-localnet.git
+`
+
+**然後你從 docker hub 拉取預構建的鏡像**
+
+`
+docker pull sirily11/etd-privatenet
+`
+
+
+**可以運行容器了**
+
+<Callout>請檢查 envfile 部分以設置所需的 env 變量</Callout>
+
+`
+docker-compose up -d worker
+`
+
+
+
+此命令將在後台啟動 etd worker。如果你想關注由容器生成的日誌，可以用
+
+`docker-compose logs -f worker`。
+
+
+## 安裝其他服務
+
+我們提供了一個 docker-compose 文件，可用於啟動其他服務。
+可用的服務列表是：
+
+- admin：一個簡單的網絡界面來管理區塊鏈
+- etdstats_node：收集區塊鏈統計數據並將其發送到我們的區塊鏈[瀏覽器](https://stats.etd.zone)的節點
+
+您可以通過運行命令 `docker-compose up -d service_name` 來啟動服務。
+
+例如，`docker-compose up -d admin` 將在您的本地計算機上啟動管理服務。
+
+## 自動更新
+
+要使用我們的自動更新腳本，您需要先安裝 pm2。為了安裝 pm2，您需要安裝最新的 nodejs。
+安裝 nodejs 後，您可以運行命令 `npm install pm2 -g`。在我們的項目目錄中，運行命令
+`pm2 啟動 app.json`。這將在後台運行我們的自動更新腳本。要在啟動時啟動自動更新腳本，
+您可以使用命令 `pm2 startup` 來實現。
+
+## 環境文件
+
+為了正確啟動我們的區塊鏈，您需要在本地文件夾中有一個 `.env` 文件，其中包含以下值：
+```
+etd_websocket=wss://{您的 etdstats 服務器的 websocket url |可選的}
+etd_password={您的etdstats 服務器的websocket 密碼|可選的}
+etd_node_name={您的etdstats 服務器的節點名稱和管理員的用戶名|必需的}
+etd_node_id={您的etdstats 服務器的節點ID 和管理員密碼|必需的}
+etd_coinbase={您的錢包地址}
+etd_max_peers={最大peers number|可選的}
+etd_secure_rpc=true
+```
+
+如果您更改 `etd_node_id` 或 `etd_node_name`，
+您需要重新構建管理容器 `docker-compose build admin` 以應用更改。

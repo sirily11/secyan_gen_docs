@@ -1,0 +1,58 @@
+---
+title: Usage
+---
+
+import Bleed from 'nextra-theme-docs/bleed'
+import Callout from 'nextra-theme-docs/callout'
+
+## 欢迎界面
+
+<Callout> 在安装完基础设备之后，你打开浏览器访问`http://localhost:8080`即可看到我们的最新的用户界面。</Callout>
+
+<Bleed full>
+ ![Full App](/images/home-screen.png)
+</Bleed>
+
+> 你可以通过点击右上方的加号 ➕ 在这里手动添加新的 table。以下是添加完默认 table 后的效果。
+
+![add image](/images/simple-add-table.png)
+
+> 通过查看我们的[示例 json 文档](https://github.com/secyan/SECYAN-GEN/blob/master/examples/table_config.json)你也可以通过 add row 按钮设定 tables。
+> 以下是简易的 table config 文件
+
+```json
+{
+    "table_name": "SUPPLIER",
+    "data_sizes": [
+      10
+    ],
+    "data_paths": [
+      "a"
+    ],
+    "columns": [
+      {
+        "column_type": "int",
+        "name": "s_suppkey"
+      }
+    ]
+  },
+
+```
+
+![Row Data Config](/images/raw-data-config.png)
+
+## 运行代码
+
+在左侧的菜单中选择选择 query editor， 你可以切换到我们精心设计过的 Query Editor。
+
+<Bleed full>
+ ![editor](/images/run-query.png)
+</Bleed>
+
+你可以在左侧的代码编辑区输入代码，之后点击右上角的运行代码的按钮，之后直接在页面里看到结果。
+你也可以点击上方的查看 join tree 按钮查看到最新的 join tree。如下图所示。
+![join tree](/images/join-tree.png)
+
+当然我们也支持多 Query 的运行，你可以通过选择不同的 tab，切换不同的 query 和其结果，
+这些结果都是保存在你的本地的，即使关闭页面也不会消失。下图就是切换到另一个页面后的结果。
+![different-query](/images/different-query.png)

@@ -1,0 +1,58 @@
+---
+title: 安装教程
+---
+
+import Callout from 'nextra-theme-docs/callout'
+
+# 依赖项
+
+1. Docker and Docker Compose
+2. Python 3.7 以上
+
+## 普通本地安装
+
+如果你是在本地安装，你需要先安装 secyan_python 这个 python 库。
+你可以通过 pip 安装：`pip3 install secyan_python`。
+如果安装遇到问题，你可以参考以下文档。
+
+### MacOS
+
+在 MacOS 上执行以下命令安装依赖项：
+
+- brew install cmake
+- brew install openssl
+- brew install gmp
+- brew install boost
+- brew install pybind11
+
+### Ubuntu
+
+- apt install cmake
+- apt install -y libssl-dev
+- apt install -y libgmp-dev
+- apt install -y libboost-all-dev
+- apt install -y ninja-build
+
+## Docker 安装
+
+本项目分为两个不同的 Docker images。一个是 base image 叫 `secyan_python`。
+你可以通过`docker pull sirily11/secyan_python`
+来下载这个单独的镜像。另一个尚未打包发布，你需要通过下载我们的 repo 来安装。具体安装方式参考下面的安装步骤。
+
+## 安装步骤
+
+1. `git clone https://github.com/secyan/SECYAN-GEN.git`
+2. `cd SECYAN-GEN`
+3. `docker-compose up db`来开启我们的数据库。
+
+之后你可以通过 访问[tpch](https://github.com/gregrahn/tpch-kit.git)
+来导入数据到数据库。详情可以参考这个 repo 生成和导入数据。
+
+4. `docker-compose up server` 这个指令将会启动我们的 Parser Server。
+5. `docker-compose up webapp` 这个指令会启动我们的 webapp。
+
+<Callout>必须同时启动server， webapp和db，
+且db需要创建tpch为名的数据库才能正常启动一切程序。
+正常启动后，打开localhost:8080就能看到我们的用户界面了。
+之后请访问我们的使用指南部分查看具体的webapp的使用方法。
+</Callout>

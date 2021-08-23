@@ -19,11 +19,48 @@ import Callout from 'nextra-theme-docs/callout'
 
 在 MacOS 上执行以下命令安装依赖项：
 
-- brew install cmake
-- brew install openssl
-- brew install gmp
-- brew install boost
-- brew install pybind11
+第一步 [安装 Homebrew](https://brew.sh/)
+
+- `brew install cmake`
+- `brew install openssl`
+- `brew install gmp`
+- `brew install boost`
+- `brew install pybind11`
+  
+
+第二步 [安装 Python](https://www.python.org/downloads/) 以及 pip3
+
+- `cd secyan_gen`
+- `pip3 install requirements.txt`
+- `export host=0.0.0.0`
+- `export port=5432`
+- `export user=user`
+- `export database=你的数据库名`
+- `export password=password`
+- `python3 index.py`
+
+另一种安装方式，使用[pipenv 安装](https://docs.pipenv.org/install/)
+
+- cd secyan_gen
+- `pipenv install`
+- `export host=0.0.0.0`
+- `export port=5432`
+- `export user=user`
+- `export database=你的数据库名`
+- `export password=password`
+- `pipenv run python3 index.py`
+
+第三步 安装[npm](https://www.npmjs.com/) 和 [yarn](https://yarnpkg.com/en/docs/install)
+
+- `cd secyan_gen/webapp`
+- `yarn install`
+- `yarn start`
+
+另一种方式，直接访问部署好的[版本](https://secyan.github.io/SECYAN-GEN/)
+
+第四步，开启 db（可选）
+
+- `docker-compose up db`
 
 ### Ubuntu
 
